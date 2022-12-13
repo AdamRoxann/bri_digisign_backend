@@ -22,3 +22,4 @@ Route::post('login', 'API\DeviceController@login')->name('login');
 Route::post('activeBoard', 'API\BoardController@activeBoard')->name('activeBoard');
 Route::post('availableKurs', 'API\KursController@availableKurs')->name('availableKurs');
 Route::post('availableInterest', 'API\InterestRateController@availableInterest')->name('availableInterest');
+Route::post('availableSukuGiro', 'API\SukuBungaGiroController@availableSukuGiro')->name('availableSukuGiro');

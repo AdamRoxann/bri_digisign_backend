@@ -15,7 +15,9 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('device_name');
+            $table->string('device_code');
             $table->text('licence_codes');
             $table->rememberToken();
             $table->integer('status')->default(0);

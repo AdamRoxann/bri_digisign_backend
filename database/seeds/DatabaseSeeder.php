@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KursSeeder::class);
         $this->call(InterestRateSeeder::class);
         $this->call(SukuGiroSeeder::class);
+        $this->call(MasterDataSeeder::class);
     }
 }

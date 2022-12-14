@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Device;
 use App\User;
 use App\Board;
+use App\Kurs;
+use App\InterestRate;
+use App\SukuBungaGiro;
+use App\KursMaster;
+use App\InterestRateMaster;
+use App\SukuBungaGiroMaster;
 use Illuminate\Support\Str;
 
 class DeviceController extends Controller
@@ -48,6 +54,42 @@ class DeviceController extends Controller
                     $regist_board->scroll_text = 'PT Bank Rakyat Indonesia, Tbk. adalah salah satu bank terbesar dan tertua milik BUMN di Indonesia.';
                     $regist_board->status = 1;
                     $regist_board->save();
+
+                    $kursmaster = KursMaster::all();
+                    
+                    foreach($kursmaster as $kurs){
+                        $defaultKurs = new Kurs();
+                        $defaultKurs->board_id = $regist_board->id;
+                        $defaultKurs->flag_icon = $kurs->flag_icon;
+                        $defaultKurs->kurs_name = $kurs->kurs_name;
+                        $defaultKurs->sell_price = $kurs->sell_price;
+                        $defaultKurs->buy_price = $kurs->buy_price;
+                        $defaultKurs->status = $kurs->status;
+                        $defaultKurs->save();
+                    }
+
+                    $interestRateMaster = InterestRateMaster::all();
+
+                    foreach($interestRateMaster as $interestRate){
+                        $defaultKurs = new InterestRate();
+                        $defaultKurs->board_id = $regist_board->id;
+                        $defaultKurs->deposito_month = $interestRate->deposito_month;
+                        $defaultKurs->interest_rate = $interestRate->interest_rate;
+                        $defaultKurs->status = $interestRate->status;
+                        $defaultKurs->save();
+                    }
+
+                    $sukuBungaGiroMaster = SukuBungaGiroMaster::all();
+
+                    foreach($sukuBungaGiroMaster as $sukuBungaGiro){
+                        $defaultKurs = new SukuBungaGiro();
+                        $defaultKurs->board_id = $regist_board->id;
+                        $defaultKurs->start = $sukuBungaGiro->start;
+                        $defaultKurs->end = $sukuBungaGiro->end;
+                        $defaultKurs->percent = $sukuBungaGiro->percent;
+                        $defaultKurs->status = $sukuBungaGiro->status;
+                        $defaultKurs->save();
+                    }
 
                 //     return response()->json(['status'=>true,'value'=>1, 
                 //     'id'=>(string)$board->id,
